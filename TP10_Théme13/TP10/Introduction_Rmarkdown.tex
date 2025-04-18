@@ -1,0 +1,796 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tikz}
+\definecolor{blue}{RGB}{0, 0, 100}
+\setmainfont{Times New Roman}
+\setsansfont{Times New Roman}
+\setmonofont{Courier New}
+\usepackage[margin=1in]{geometry}
+\usepackage{titlesec}
+\titleformat{\section}{\Huge\bfseries\color{blue}}{\thesection}{1em}{}
+\titleformat{\subsection}{\huge\bfseries\color{blue}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\LARGE\bfseries\color{blue}}{\thesubsubsection}{1em}{}
+\usepackage{tocloft}
+\renewcommand{\cftsecfont}{\small}
+\renewcommand{\cftsubsecfont}{\footnotesize}
+\renewcommand{\cftsecpagefont}{\small}
+\renewcommand{\cftsubsecpagefont}{\footnotesize}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\usepackage{fontspec}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{colortbl}
+\usepackage{hhline}
+\newlength\Oldarrayrulewidth
+\newlength\Oldtabcolsep
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{booktabs}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+    % Début de la bordure avec TikZ
+    \begin{tikzpicture}[remember picture, overlay] % overlay = force TikZ à dessiner par-dessus le contenu existant de la page, plutôt que de réserver un espace supplémentaire pour le dessin, remember = lorsque vous voulez dessiner par rapport à la position exacte de la page
+    % Définir une couleur élégante
+    \definecolor{blue}{RGB}{0, 100, 0}
+    
+    % Dessiner une bordure élégante avec coins arrondis
+    \draw[
+        line width=5pt, % Épaisseur du trait
+        black, % Couleur de la bordure
+        rounded corners=15pt, % Coins arrondis
+        double, % Bordure double
+        double distance=2pt % Espacement entre les deux lignes
+    ] 
+        ([xshift=10pt, yshift=-10pt]current page.north west) rectangle
+        ([xshift=-10pt, yshift=10pt]current page.south east);
+    \end{tikzpicture}
+        \includegraphics[width=7cm]{Figures/LOGO1.jpeg} \\[0.1cm]
+        \includegraphics[width=6cm]{Figures/LOGO2.jpeg} \\[0.1cm]
+        
+        \textbf{\large Agence nationale de la Statistique et de la Démographie (ANSD)}\\[0.2cm]
+        
+        \includegraphics[width=4cm]{Figures/LOGO3.jpeg} \\[0.1cm]
+        
+        \textbf{\large Ecole nationale de la Statistique et de l'Analyse économique Pierre Ndiaye (ENSAE)}\\[0.4cm]
+        
+        \textit{\LARGE Semestre 2 : Projet statistique sous R }\\[0.3cm]
+        \textbf{\Huge \color{blue} \textsf{Partie 1 : Introduction à Rmarkdown}}\\[0.2cm]
+        
+        \begin{minipage}{0.5\textwidth}
+    \begin{flushleft} \large
+        \emph{\textsf{Rédigé par :}}\\
+        \textbf{Khadidiatou Diakhaté}\\
+        \textbf{Haba Fromo Francis}\\
+        \textbf{Dior Mbengue}\\
+    \end{flushleft}
+\end{minipage}
+        \hfill
+        \begin{minipage}{0.4\textwidth}
+            \begin{flushright} \large
+                \emph{\textsf{Sous la supervision de :}} \\
+                \textbf{M. Aboubacre HEMA}\\
+                \textit{Research Analyst }
+            \end{flushright}
+        \end{minipage}
+
+        \vfill 
+
+        {\large \textsf{Année scolaire : 2024/2025}}\\[0.5cm]
+        
+    \end{center}
+\end{titlepage}
+
+\section{Créer un fichier
+Rmarkdown}\label{cruxe9er-un-fichier-rmarkdown}
+
+\includegraphics[width=5.32292in,height=\textheight,keepaspectratio]{images/clipboard-372006340.png}
+
+\section{Entête de Rmarkdown YAML(Yet Another Markup
+Language)}\label{entuxeate-de-rmarkdown-yamlyet-another-markup-language}
+
+\includegraphics[width=4.29167in,height=\textheight,keepaspectratio]{images/Capture d'écran 2025-04-16 223242.png}
+
+Nous avons le titre du document R, l'auteur du document, la date où le
+fichier a été créé et le type du document de sortie( Word, PPT, PDF,
+Prettydoc, etc).
+
+Pour générer les output, il suffit d'appuyer sur \emph{knit on save} ou
+sur \emph{knit} qui propose le format HTML, PDF, Word et d'autres
+options.
+
+\includegraphics[width=4.45833in,height=\textheight,keepaspectratio]{images/clipboard-3418071425.png}
+
+\textbf{OUTPUT Word}
+
+\includegraphics[width=4.59375in,height=\textheight,keepaspectratio]{images/clipboard-358253334.png}
+
+\textbf{OUTPUT HTML}
+
+\includegraphics[width=4.59375in,height=\textheight,keepaspectratio]{images/clipboard-1337679791.png}
+
+\textbf{OUTPUT PDF}
+
+\includegraphics[width=4.84375in,height=\textheight,keepaspectratio]{images/clipboard-4183967572.png}
+
+Pour avoir la sortie PDF, il faut installer LateX ou MicteX
+
+Nous avons aussi l'output \textbf{Prettydoc}
+
+\section{Les chunk options et les global
+options}\label{les-chunk-options-et-les-global-options}
+
+\subsection{chunk de configuration}\label{chunk-de-configuration}
+
+Il est préférable de configurer le comportement par défaut Knitr pour
+faire certains réglages comme la position et la taille des figures ou
+l'affichage des lignes de codes(instructions sur R) ou non dans le
+document de sortie. Ce chunk de configuration utilise cette fonction
+pour définir les options par défaut applicables à tous les chunk en
+dessous.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\NormalTok{opts\_chunk}\SpecialCharTok{$}\FunctionTok{set}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Aprés ce chunk, il est recommandé de faire un autre chunk pour charger
+les packages et un autre pour charger les données qui seront utilisés
+tout au long.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#vérifier et installer les packages nécessaires}
+\NormalTok{packages }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"haven"}\NormalTok{, }\StringTok{"utils"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{, }\StringTok{"gtsummary"}\NormalTok{, }\StringTok{"survey"}\NormalTok{,}\StringTok{"labelled"}\NormalTok{,}\StringTok{"compareDF"}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (pkg }\ControlFlowTok{in}\NormalTok{ packages) \{}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(pkg, }\AttributeTok{character.only =} \ConstantTok{TRUE}\NormalTok{)) }\FunctionTok{install.packages}\NormalTok{(pkg, }\AttributeTok{dependencies =} \ConstantTok{TRUE}\NormalTok{)}
+  \FunctionTok{library}\NormalTok{(pkg, }\AttributeTok{character.only =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Dans la mesure du possible, il est préférable d'utiliser des chemins
+relatifs pour les fichiers (exemple : ./donnees/mesdonnees.csv), plutôt
+que des chemins absolus (exemple :
+D:/chemin/vers/les/donnees/mesdonnees.csv).
+
+Il peut arriver qu'il soit difficile d'accéder à des fichiers en
+utilisant uniquement des chemins relatifs. Une solution de repli
+consiste à définir le chemin absolu du dossier à un seul endroit dans le
+code source du rapport, puis à l'utiliser de façon relative dans les
+fonctions d'importation. Voici un exemple :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Définir UNE SEULE FOIS le répertoire des données}
+\NormalTok{dossier\_donnees }\OtherTok{\textless{}{-}} \StringTok{"D:/chemin/vers/les/donnees/"}
+\CommentTok{\# Charger les données avec un chemin composé}
+\NormalTok{donnees1 }\OtherTok{\textless{}{-}} \FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(dossier\_donnees, }\StringTok{"mesdonnees1.csv"}\NormalTok{))}
+\NormalTok{donnees2 }\OtherTok{\textless{}{-}} \FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(dossier\_donnees, }\StringTok{"mesdonnees2.csv"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+On peut aussi nommer un chunk
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{resultat }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{+} \DecValTok{1}
+\FunctionTok{print}\NormalTok{(resultat)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/clipboard-160696737.png}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2}\SpecialCharTok{+}\DecValTok{2}
+\CommentTok{\# eval=FALSE veut dire qu\textquotesingle{}on montre les lignes de code mais pas l\textquotesingle{}output}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/clipboard-531356218.png}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.4     v readr     2.1.5
+## v forcats   1.0.0     v stringr   1.5.1
+## v ggplot2   3.5.1     v tibble    3.2.1
+## v lubridate 1.9.4     v tidyr     1.3.1
+## v purrr     1.0.2     
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Pour que les messages générés sur le chunk ne soient pas affichés}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\CommentTok{\# Pour que les messages générés sur le chunk ne soient pas affichés}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=4.91667in,height=\textheight,keepaspectratio]{images/clipboard-3495288595.png}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/clipboard-3843030201.png}}
+
+Dans cet exemple, il est demandé à R Markdown de ne pas inclure les
+instructions R dans le document de sortie (echo = FALSE). Les warnings
+et les messages d'informations n'apparaîtront pas non plus dans le
+fichier de sortie. En revanche, les erreurs apparaîtront (error = TRUE).
+Les figures sont centrées (fig.align = ``center'') et ont une largeur de
+75\% de la largeur du texte (out.width = ``75\%'').
+
+Nous avons encore
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/clipboard-2140684100.png}}
+
+\section{Insertion d'éléments et de
+bullet}\label{insertion-duxe9luxe9ments-et-de-bullet}
+
+\begin{itemize}
+\item
+  Pour insérer une image sur Rmarkdown, on peut mettre un code du type
+  \pandocbounded{\includegraphics[keepaspectratio]{images/clipboard-4183967572.png}}''
+  ou juste copier l'image dans la partie \textbf{Visual}
+\item
+  Pour insérer un lien:{[}(\url{https://thegraph.org}){]}
+\end{itemize}
+
+\section{Inline Code}\label{inline-code}
+
+Les inlines codes dans Rmarkdown permettent d'insérer directement des
+résultats à l'intérieur du texte. Il sont utiles pour rendre le rapport
+dynamique.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{max}\NormalTok{(women}\SpecialCharTok{$}\NormalTok{height)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 72
+\end{verbatim}
+
+The maximum women's height is 72.
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/clipboard-3684436073.png}}
+
+\section{Les tableaux}\label{les-tableaux}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{women }\CommentTok{\# sans recommandation de tableaux}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    height weight
+## 1      58    115
+## 2      59    117
+## 3      60    120
+## 4      61    123
+## 5      62    126
+## 6      63    129
+## 7      64    132
+## 8      65    135
+## 9      66    139
+## 10     67    142
+## 11     68    146
+## 12     69    150
+## 13     70    154
+## 14     71    159
+## 15     72    164
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/clipboard-261503643.png}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Afficher des tableaux à partir des données de R}
+\NormalTok{pacman}\SpecialCharTok{::}\FunctionTok{p\_load}\NormalTok{(flextable, gt, reactable)}
+\NormalTok{flextable}\SpecialCharTok{::}\FunctionTok{flextable}\NormalTok{(women)}
+\end{Highlighting}
+\end{Shaded}
+
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{2pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable}[c]{|p{0.75in}|p{0.75in}}
+
+
+
+\ascline{1.5pt}{666666}{1-2}
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{height}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{weight}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}\endfirsthead 
+
+\ascline{1.5pt}{666666}{1-2}
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{height}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{weight}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}\endhead
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{58}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{115}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{59}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{117}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{60}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{120}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{61}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{123}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{62}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{126}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{63}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{129}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{64}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{132}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{65}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{135}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{66}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{139}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{67}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{142}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{68}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{146}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{69}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{150}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{70}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{154}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{71}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{159}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{72}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Arial}{164}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}
+
+
+
+\end{longtable}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# gt::gt(women)}
+\CommentTok{\# reactable::reactable(women)}
+\end{Highlighting}
+\end{Shaded}
+
+Un autre exemple
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# cela affichera les premiéres lignes de iris}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}\FunctionTok{head}\NormalTok{(iris), }\AttributeTok{caption =} \StringTok{"Premières lignes du jeu de\_données\_iris"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}rrrrl@{}}
+\caption{Premières lignes du jeu de\_données\_iris}\tabularnewline
+\toprule\noalign{}
+Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+5.1 & 3.5 & 1.4 & 0.2 & setosa \\
+4.9 & 3.0 & 1.4 & 0.2 & setosa \\
+4.7 & 3.2 & 1.3 & 0.2 & setosa \\
+4.6 & 3.1 & 1.5 & 0.2 & setosa \\
+5.0 & 3.6 & 1.4 & 0.2 & setosa \\
+5.4 & 3.9 & 1.7 & 0.4 & setosa \\
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# On peut améliorer les tableaux avec cette variable}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(kableExtra)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attachement du package : 'kableExtra'
+\end{verbatim}
+
+\begin{verbatim}
+## Les objets suivants sont masqués depuis 'package:flextable':
+## 
+##     as_image, footnote
+\end{verbatim}
+
+\begin{verbatim}
+## L'objet suivant est masqué depuis 'package:dplyr':
+## 
+##     group_rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}\FunctionTok{head}\NormalTok{(iris), }\AttributeTok{caption =} \StringTok{"Iris avec kableExtra"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}rrrrl@{}}
+\caption{Iris avec kableExtra}\tabularnewline
+\toprule\noalign{}
+Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+5.1 & 3.5 & 1.4 & 0.2 & setosa \\
+4.9 & 3.0 & 1.4 & 0.2 & setosa \\
+4.7 & 3.2 & 1.3 & 0.2 & setosa \\
+4.6 & 3.1 & 1.5 & 0.2 & setosa \\
+5.0 & 3.6 & 1.4 & 0.2 & setosa \\
+5.4 & 3.9 & 1.7 & 0.4 & setosa \\
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(DT)}
+\FunctionTok{datatable}\NormalTok{(iris)}
+\CommentTok{\# Cela permet de filtrer, trier, rechercher dans le tableau (pour HTML uniquement)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Les graphiques}\label{les-graphiques}
+
+Il faut d'abord installé les packages ggplot2, cowplot, patchwork,
+plotly,etc.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{mpg, mtcars}\SpecialCharTok{$}\NormalTok{hp, }
+     \AttributeTok{main =} \StringTok{"Puissance vs Consommation"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"mpg"}\NormalTok{,}\AttributeTok{ylab=}\StringTok{"hp"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Introduction_Rmarkdown_files/figure-latex/unnamed-chunk-14-1.pdf}}
+
+Cela produit un nuage de points
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{mpg, }\AttributeTok{col =} \StringTok{"skyblue"}\NormalTok{, }
+     \AttributeTok{main =} \StringTok{"Histogramme des mpg"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Miles per gallon"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Introduction_Rmarkdown_files/figure-latex/unnamed-chunk-15-1.pdf}}
+
+Ceci est un histogramme
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ggplot2}\SpecialCharTok{::}\FunctionTok{ggplot}\NormalTok{(mtcars, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ mpg, }\AttributeTok{y =}\NormalTok{ hp)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{color =} \StringTok{"tomato"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Puissance en fonction du mpg"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Miles par gallon"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Puissance"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Introduction_Rmarkdown_files/figure-latex/unnamed-chunk-16-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Avec le package ggplot2}
+\end{Highlighting}
+\end{Shaded}
+
+On peut mettre la couleur qu'on veut
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Affiche les 20 premières couleurs avec leur nom}
+\FunctionTok{barplot}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{20}\NormalTok{), }\AttributeTok{col =} \FunctionTok{colors}\NormalTok{()[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{], }\AttributeTok{names.arg =} \FunctionTok{colors}\NormalTok{()[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{],}\AttributeTok{las=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Introduction_Rmarkdown_files/figure-latex/unnamed-chunk-17-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# on peut aussi controler la taille et l\textquotesingle{}alignement}
+
+\FunctionTok{ggplot}\NormalTok{(mtcars, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ mpg)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth =} \DecValTok{2}\NormalTok{, }\AttributeTok{fill =} \StringTok{"steelblue"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Distribution des mpg"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{Introduction_Rmarkdown_files/figure-latex/unnamed-chunk-18-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Nous pouvons aussi avoir plusieurs graphiques cote à cote}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{))  }\CommentTok{\# 1 ligne, 2 colonnes}
+\FunctionTok{hist}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{mpg)}
+\FunctionTok{boxplot}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{hp)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Introduction_Rmarkdown_files/figure-latex/unnamed-chunk-19-1.pdf}}
+
+Pour avoir plus d'informations, vous pouvez partir dans
+{[}\url{https://r-graph-gallery.com/}{]}
+
+\subsection{Citation et bibliographie}\label{citation-et-bibliographie}
+
+\subsubsection{Introduction}\label{introduction}
+
+Selon @smith2020, la statistique est essentielle dans l'analyse des
+données.
+
+Voir aussi l'étude de @doe2019 pour un autre point de vue.
+
+\subsubsection{Conclusion}\label{conclusion}
+
+La bibliographie s'affiche ci-dessous automatiquement.
+
+\subsubsection{Références}\label{ruxe9fuxe9rences}
+
+\end{document}
