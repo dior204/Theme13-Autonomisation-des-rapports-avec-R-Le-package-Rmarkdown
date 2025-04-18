@@ -1,0 +1,334 @@
+---
+title: "Tendances mondiales de la consommation de café"
+author: "Groupe"
+date: "`r Sys.Date()`"
+output: 
+  officedown::rdocx_document:
+    #toc: true
+    #toc_depth: 3
+    fig_caption: true
+    reference_docx: word_template.docx
+bibliography: references_application.bib
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE, 
+  fig.cap = TRUE, 
+  warning = FALSE, 
+  message = FALSE,
+  comment = FALSE,
+  dpi = 300
+)
+
+
+# Importation des packages essentiels
+library(officedown)
+library(officer)
+library(flextable)
+library(dplyr)
+library(ggplot2)
+library(mschart)
+library(rvg)
+library(gtsummary)
+library(tidyr)
+library(knitr)
+library(readr)
+
+# Créons des styles pour notre document
+coffee_par <- fp_par(
+  text.align = "justify",
+  padding.bottom = 10, 
+  padding.top = 10,
+  border.bottom = fp_border(color = "#654321", width = 1)
+)
+
+title_text <- fp_text(
+  color = "#654321",
+  font.size = 16,
+  font.family = "Calibri",
+  bold = TRUE
+)
+
+highlight_text <- fp_text(
+  color = "#000000",
+  font.size = 12,
+  font.family = "Calibri",
+  bold = TRUE,
+  shading.color = "#E6CCB2"
+)
+
+# Création des données simulées sur la consommation de café
+set.seed(123)
+
+# Données de consommation par pays
+countries <- c("Brésil", "Colombie", "Éthiopie", "Vietnam", "Indonésie", 
+               "France", "Italie", "Allemagne", "États-Unis", "Canada")
+
+coffee_consumption <- data.frame(
+  pays = countries,
+  consommation_par_habitant = c(5.9, 1.8, 2.1, 2.3, 1.3, 5.4, 5.9, 5.5, 4.2, 6.5),
+  production = c(3.6, 0.8, 0.5, 1.8, 0.6, 0, 0, 0, 0, 0),
+  exportation = c(2.3, 0.6, 0.3, 1.6, 0.5, 0, 0, 0, 0, 0),
+  importation = c(0.1, 0, 0, 0, 0, 0.9, 1.2, 1.1, 1.5, 0.8),
+  arabica = c(70, 80, 95, 10, 15, NA, NA, NA, NA, NA),
+  robusta = c(30, 20, 5, 90, 85, NA, NA, NA, NA, NA)
+)
+
+# Données sur les préférences de café
+coffee_preferences <- data.frame(
+  type = c("Espresso", "Cappuccino", "Café filtre", "Latte", "Mocha", "Café glacé"),
+  popularite = c(35, 25, 20, 15, 10, 30),
+  prix_moyen = c(2.1, 3.5, 2.0, 3.8, 4.2, 3.6),
+  calories = c(5, 120, 5, 190, 230, 160),
+  cafeine_mg = c(63, 63, 95, 63, 58, 90)
+)
+
+# Données de consommation par âge
+coffee_by_age <- data.frame(
+  groupe_age = c("18-24", "25-34", "35-44", "45-54", "55-64", "65+"),
+  tasses_par_jour = c(1.2, 2.1, 2.8, 3.2, 2.9, 2.3),
+  matin = c(85, 90, 95, 94, 96, 98),
+  apres_midi = c(40, 45, 60, 55, 45, 30),
+  soir = c(20, 25, 15, 10, 5, 2)
+)
+
+# Données de tendances sur 10 ans
+coffee_trends <- data.frame(
+  annee = 2013:2023,
+  consommation_mondiale = c(150, 152, 155, 158, 161, 165, 168, 169, 157, 165, 172),
+  prix_arabica = c(3.1, 4.2, 3.8, 3.5, 3.1, 2.9, 2.7, 3.0, 3.5, 4.8, 5.2),
+  prix_robusta = c(2.1, 2.3, 2.2, 2.0, 1.9, 1.8, 1.7, 1.9, 2.1, 2.4, 2.7),
+  cafe_specialite = c(10, 12, 15, 18, 22, 25, 29, 33, 35, 37, 40)
+)
+
+# Données pour le graphique de comparaison de café
+coffee_types <- data.frame(
+  type = c("Arabica", "Robusta"),
+  acidite = c(8, 5),
+  amertume = c(5, 8),
+  corps = c(6, 9),
+  arome = c(9, 6),
+  cafeine = c(6, 10)
+) %>%
+  tidyr::pivot_longer(cols = -type, names_to = "caracteristique", values_to = "valeur")
+
+# Impact environnemental
+coffee_environment <- data.frame(
+  methode = c("Conventionnel", "Bio", "Commerce équitable", "Shade grown", "Culture en terrasse"),
+  empreinte_carbone = c(8, 5, 6, 3, 4),
+  consommation_eau = c(9, 7, 8, 5, 6),
+  biodiversite = c(2, 6, 5, 9, 7),
+  deforestation = c(8, 4, 5, 1, 3),
+  social = c(3, 7, 9, 8, 6)
+)
+```
+
+\newpage
+
+# Sommaire
+
+<!---BLOCK_TOC--->
+
+\newpage
+
+# Liste des figures
+
+<!---BLOCK_TOC{seq_id: 'fig'}--->
+
+# Liste des tableaux
+
+<!---BLOCK_TOC{seq_id: 'tab'}--->
+
+\newpage
+
+# Introduction
+
+Le café est l'une des boissons les plus populaires dans le monde, avec plus de 2 milliards de tasses consommées chaque jour[^1]. Cette analyse explore les tendances mondiales de la consommation de café, les préférences des consommateurs, et l'impact environnemental de sa production. Ce document illustre également les fonctionnalités avancées de R Markdown pour la création de rapports professionnels au format Word.
+
+[^1]: Selon l'oraganisation mondiale du café
+
+<!---BLOCK_MULTICOL_START--->
+
+Le café est cultivé dans plus de 50 pays à travers la "ceinture du café", une région située entre les tropiques du Cancer et du Capricorne. Les principaux producteurs sont le Brésil, le Vietnam, la Colombie, l'Indonésie et l'Éthiopie.
+
+`r run_columnbreak()`
+
+La consommation mondiale continue d'augmenter, particulièrement dans les marchés émergents d'Asie et dans les pays traditionnellement consommateurs de thé qui découvrent la culture du café.
+
+<!---BLOCK_MULTICOL_STOP{widths: [3,3], space: 0.2, sep: true}--->
+
+\newpage
+
+<!---BLOCK_LANDSCAPE_START--->
+
+# Consommation mondiale de café
+
+## Vue d'ensemble par pays
+
+La consommation de café varie considérablement selon les pays et les cultures. Les pays nordiques comme la Finlande et la Norvège sont en tête de la consommation par habitant, tandis que les pays producteurs comme le Brésil ont également une forte consommation locale.
+
+```{r  tab.cap="Consommation, production et échanges de café par pays (kg par habitant)"}
+# Tableau de consommation avec flextable
+flextable(coffee_consumption) %>%
+  set_header_labels(
+    pays = "Pays",
+    consommation_par_habitant = "Consommation",
+    production = "Production",
+    exportation = "Exportation",
+    importation = "Importation", 
+    arabica = "Arabica (%)",
+    robusta = "Robusta (%)"
+  ) %>%
+   set_caption(
+    caption = "Consommation, production et échanges de café par pays (kg par habitant)",
+    autonum = run_autonum(seq_id = "tab", bkm = "tab_produits") # Pour la numérotation automatique et le signet
+  ) %>%
+  theme_zebra() %>%
+  bg(bg = "#E6CCB2", part = "header") %>%
+  color(color = "#654321", part = "header") %>%
+  bold(part = "header") %>%
+  fontsize(size = 10) %>%
+  align(align = "center", part = "all") %>%
+  border_outer(border = fp_border(color = "#654321", width = 1)) %>%
+  autofit() %>%
+  add_footer_lines("Source: Données simulées à des fins d'illustration") %>%
+  italic(part = "footer") %>%
+  fontsize(size = 8, part = "footer")
+```
+
+Comme on peut le voir dans le tableau \@ref(tab:tab_produits), les pays producteurs comme le Brésil et le Vietnam ont généralement une forte production mais exportent une grande partie de leur café, tandis que les pays consommateurs comme le Canada et l'Allemagne dépendent fortement des importations.
+
+<!---BLOCK_LANDSCAPE_STOP--->
+
+# Préférences des consommateurs
+
+## Types de café préférés
+
+Les préférences en matière de café varient considérablement selon les régions du monde et les groupes démographiques.
+
+<!---BLOCK_MULTICOL_START--->
+
+```{r fig-preferences, fig.cap="Popularité des différents types de café", fig.width=3.5, fig.height=4}
+# Graphique circulaire des préférences
+ggplot(coffee_preferences, aes(x = "", y = popularite, fill = type)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
+  scale_fill_manual(values = c("#8B4513", "#A0522D", "#CD853F", "#D2B48C", "#DEB887", "#F5DEB3")) +
+  theme_void() +
+  labs(fill = "Type de café") +
+  theme(
+    plot.title = element_text(color = "#654321", hjust = 0.5),
+    legend.title = element_text(color = "#654321"),
+    plot.margin = unit(c(1, 1, 1, 1), "cm")
+  )
+```
+
+`r run_columnbreak()`
+
+Selon notre analyse, l'espresso reste le type de café le plus populaire dans le monde, suivi du café glacé qui gagne rapidement en popularité, notamment auprès des jeunes consommateurs.
+
+Le cappuccino et le café filtre conservent une base solide de consommateurs, tandis que les boissons plus sucrées comme le latte et le mocha sont particulièrement populaires en Amérique du Nord.
+
+<!---BLOCK_MULTICOL_STOP{widths: [3,3], space: 0.2, sep: false}--->
+
+\newpage
+
+# Caractéristiques des variétés de café
+
+## Comparaison Arabica vs Robusta
+
+Les deux principales variétés de café cultivées commercialement, l'Arabica et le Robusta, présentent des caractéristiques sensorielles et chimiques très différentes.
+
+```{r fig-comparison, fig.cap="Comparaison des caractéristiques entre Arabica et Robusta"}
+# Graphique radar pour comparer Arabica et Robusta
+ggplot(coffee_types, aes(x = caracteristique, y = valeur, group = type, color = type)) +
+  geom_polygon(aes(fill = type), alpha = 0.2) +
+  geom_point(size = 3) +
+  geom_line(size = 1) +
+  scale_y_continuous(limits = c(0, 10)) +
+  scale_color_manual(values = c("#8B4513", "#D2B48C")) +
+  scale_fill_manual(values = c("#8B4513", "#D2B48C")) +
+  theme_minimal() +
+  labs(
+    color = "Variété",
+    fill = "Variété"
+  ) +
+  theme(
+    axis.text.x = element_text(size = 10),
+    plot.title = element_text(color = "#654321", hjust = 0.5),
+    legend.title = element_text(color = "#654321"),
+    panel.grid.major = element_line(color = "gray80", size = 0.3)
+  )
+```
+
+La figure \@ref(fig:fig-comparison) montre les différences principales entre l'Arabica et le Robusta. L'Arabica est généralement plus apprécié pour son acidité équilibrée et ses arômes complexes, tandis que le Robusta offre plus de corps, d'amertume et une teneur en caféine presque deux fois plus élevée.
+
+## Impact environnemental
+
+Selon l'Organisation mondiale de la santé, la consommation de café n’est pas sans effet [@who2017caffeine].
+
+Les rendements sont affectés par le changement climatique [@martinez2019climate].
+
+\newpage
+
+# Le café de spécialité
+
+Le café de spécialité représente un segment en croissance rapide, avec des consommateurs de plus en plus intéressés par l'origine, les méthodes de torréfaction et les profils de saveur uniques.
+
+<!---BLOCK_MULTICOL_START--->
+
+Le café de spécialité se caractérise par:
+
+-   Une traçabilité complète (ferme d'origine)
+-   Un score de qualité supérieur à 80 points sur 100
+-   Des méthodes de traitement post-récolte spécifiques
+-   Une torréfaction artisanale mettant en valeur les arômes
+
+`r run_columnbreak()`
+
+Les consommateurs de café de spécialité recherchent:
+
+-   Des profils de saveur complexes et distinctifs
+-   Des méthodes d'extraction précises (V60, AeroPress, etc.)
+-   Une expérience sensorielle complète
+-   Un impact social et environnemental positif
+
+<!---BLOCK_MULTICOL_STOP{widths: [3,3], space: 0.2, sep: true}--->
+
+\newpage
+
+# Conclusion et perspectives
+
+Cette analyse montre que la consommation mondiale de café continue d'augmenter, avec des tendances émergentes comme le café de spécialité, les préoccupations environnementales et l'évolution des préférences des consommateurs. L'industrie du café fait face à des défis importants, notamment le changement climatique qui menace les zones de production traditionnelles.
+
+PS : Ce rapport s'appuie sur des données simulées à des fins d'illustration[^2].
+
+[^2]: Dans un contexte réel, ces données seraient obtenues à partir de sources fiables comme l'Organisation Internationale du Café (OIC), la National Coffee Association (NCA) et la Specialty Coffee Association (SCA).
+
+Le marché du café est dynamique et en constante évolution, et les tendances identifiées dans ce rapport reflètent les conditions actuelles du marché[^3].
+
+[^3]: Pour des données plus récentes et complètes, consultez les rapports annuels de l'Organisation Internationale du Café.
+
+Parmi les tendances futures à surveiller:
+
+-   L'impact du changement climatique sur les zones de production
+
+-   L'automatisation et l'intelligence artificielle dans la culture et la torréfaction
+
+-   Les innovations en matière d'emballage durable
+
+-   L'expansion des chaînes de café dans les marchés émergents
+
+-   La popularité croissante des méthodes alternatives de préparation
+
+\newpage
+
+# Table des matières
+
+<!---BLOCK_TOC--->
+
+\newpage
+
+# Références bibliographiques
