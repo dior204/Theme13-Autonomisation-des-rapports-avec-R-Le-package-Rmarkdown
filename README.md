@@ -13,16 +13,6 @@ Il porte sur l’utilisation du package **RMarkdown** pour automatiser la géné
 - Automatiser les analyses statistiques.
 - Améliorer la reproductibilité des travaux.
 
-# Différentes étapes
-
-## Partie 1 : Introduction à Rmarkdown
-
-Montrer les différentes parties  dans Rmarkdown et les bases de RMarkdown
-
-## Partie 2 : Génération de rapports sur Word avec Rmarkdown
-
-Générer un rapport puis intégrer les templates
-
 ---
 # 🛠️ Technologies et packages utilisés
 
