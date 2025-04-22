@@ -26,7 +26,7 @@ Générer un rapport puis intégrer les templates
 
 # 🛠️Fonctionnalités utilisées
 
- ' r Rmarkdown' 
+ rmarkdown
 
 
 
