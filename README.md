@@ -12,13 +12,12 @@ Il porte sur l’utilisation du package **RMarkdown** pour automatiser la géné
 - Générer des rapports dynamiques en combinant code, texte et graphiques.
 - Automatiser les analyses statistiques.
 - Améliorer la reproductibilité des travaux.
-- Créer une interface interactive avec **Shiny**.
 
 # Différentes étapes
 
 ## Partie 1 : Introduction à Rmarkdown
 
-Montrer les différentes parties  dans Rmarkdown et les béats bas dans Rmarkdown
+Montrer les différentes parties  dans Rmarkdown et les bases de RMarkdown
 
 ## Partie 2 : Génération de rapports sur Word avec Rmarkdown
 
@@ -65,7 +64,7 @@ Chaque dossier illustre une facette de l’autonomisation des rapports avec RMar
 
 ## 👥 Auteurs
 
-- 🧑🏾‍🎓 **Dior MBENGUE**  
+- 👩🏽‍🎓 **Dior MBENGUE**  
 - 👩🏽‍🎓 **Khadidiatou DIAKHATE**  
 - 👨🏽‍🎓 **Francis Haba FROMO**
 
