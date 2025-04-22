@@ -1,11 +1,11 @@
-# Theme13- Autonomisation des rapports avec R le package Rmarkdown
+# 🧠Theme13- Autonomisation des rapports avec R le package Rmarkdown
 
-## Description
+## 📝Description
 
 Ce projet a été réalisé dans le cadre de l’unité d’enseignement *Projet statistique avec R*.  
 Il porte sur l’utilisation du package **RMarkdown** pour automatiser la génération de rapports reproductibles, dynamiques et personnalisés.
 
-## Objectifs
+## 🎯Objectifs principaux
 
 - Générer des rapports dynamiques en combinant code, texte et graphiques.
 - Automatiser les analyses statistiques.
@@ -25,60 +25,53 @@ Générer un rapport puis intégrer les templates
 # 🛠️Technologies et packages utilisés
 
 
-- **R** : Langage principal utilisé pour le traitement, l’analyse de données et la génération des rapports.
-- **RMarkdown** : Outil central du projet permettant de créer des documents dynamiques combinant texte, code R et résultats (tableaux, graphiques...).
-- **ggplot2** : Utilisé pour produire des visualisations graphiques élégantes et personnalisées à partir des données analysées.
-- **MSchart** : Utilisé pour intégrer des graphiques Microsoft Office (notamment dans des documents Word) et enrichir les rapports avec des visualisations adaptées à un format bureautique.
-- **rvg** : Permet de générer des graphiques vectoriels (au format Office DrawingML) exportables dans Word et PowerPoint tout en conservant leur qualité d’édition.
-- **tidyverse** : Ensemble de packages pour la manipulation, la transformation et la visualisation des données (incluant notamment `dplyr`, `readr`, etc.).
+- 🧮**R** : Langage principal utilisé pour le traitement, l’analyse de données et la génération des rapports.
+- 🗒️**RMarkdown** : Outil central du projet permettant de créer des documents dynamiques combinant texte, code R et résultats (tableaux, graphiques...).
+- 🗒️**ggplot2** : Utilisé pour produire des visualisations graphiques élégantes et personnalisées à partir des données analysées.
+- 🧩**MSchart** : Utilisé pour intégrer des graphiques Microsoft Office (notamment dans des documents Word) et enrichir les rapports avec des visualisations adaptées à un format bureautique.
+- 🎨**rvg** : Permet de générer des graphiques vectoriels (au format Office DrawingML) exportables dans Word et PowerPoint tout en conservant leur qualité d’édition.
+- 🔧**tidyverse** : Ensemble de packages pour la manipulation, la transformation et la visualisation des données (incluant notamment `dplyr`, `readr`, etc.).
 
-# Contenu du dépôt
+# 📂Contenu du dépôt
 
 Le dépôt est organisé autour de plusieurs exemples illustrant différentes possibilités offertes par RMarkdown pour l’automatisation des rapports :
 
-- **Introduction_Rmarkdown/**  
-  Contient un fichier `.Rmd` d’introduction à RMarkdown ainsi que sa sortie au format PDF.  
-  → Objectif : présenter les bases de RMarkdown (syntaxe, blocs de code, rendu).
+- - 📂 **Introduction_Rmarkdown**  
+  - 📄 `Introduction_Rmarkdown.Rmd` : Introduction aux bases de RMarkdown.  
+  - 📄 `Introduction_Rmarkdown.pdf` : Sortie générée au format PDF.  
+  ➤ Présentation de la syntaxe de base, blocs de code et rendu dynamique.
 
-- **Sortie_Word_avec_Rmarkdown/**  
-  Contient un fichier `.Rmd` destiné à produire un rapport Word ainsi que la sortie PDF.  
-  → Objectif : montrer comment adapter le rendu pour des documents Word professionnels.
+- 📂 **Sortie_Word_avec_Rmarkdown**  
+  - 📄 `Sortie_Word.Rmd` : Rapport conçu pour un rendu Word.  
+  - 📄 `Sortie_Word.pdf` : Version PDF du même rapport.  
+  ➤ Exemple de rapport structuré, destiné à un format bureautique.
 
-- **application_sans_template/**  
-  Contient un fichier `.Rmd` simple (sans mise en forme avancée) et sa sortie au format Word.  
-  → Objectif : illustrer un rendu minimaliste sans structure prédéfinie.
+- 📂 **application_sans_template**  
+  - 📄 `application_sans_template.Rmd` : Rapport simple sans mise en forme avancée.  
+  - 📄 `application_sans_template.docx` : Sortie Word brute.  
+  ➤ Illustration d'un rapport automatisé sans personnalisation.
 
-- **application/**  
-  Contient un fichier `.Rmd` avec un **template personnalisé** ainsi que sa sortie Word.  
-  → Objectif : démontrer l'utilisation de modèles personnalisés pour des rapports structurés et esthétiques.
+- 📂 **application**  
+  - 📄 `application.Rmd` : Rapport avec template personnalisé.  
+  - 📄 `application.docx` : Résultat final au format Word avec mise en forme.  
+  ➤ Exemple de rapport structuré avec un rendu professionnel.
 
 Chaque dossier illustre une facette de l’autonomisation des rapports avec RMarkdown, du plus simple au plus abouti.
 
+---
 
+## 👥 Auteurs
 
+- 🧑🏾‍🎓 **Dior MBENGUE**  
+- 👩🏽‍🎓 **Khadidiatou DIAKHATE**  
+- 👨🏽‍🎓 **Francis Haba FROMO**
 
+---
+## 📄 Licence
 
+Projet réalisé à des fins pédagogiques dans le cadre du cours *Projet statistique avec R*.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+---
 
 # 📚Références
 
