@@ -24,11 +24,9 @@ Montrer les différentes parties  dans Rmarkdown et les béats bas dans Rmarkdow
 
 Générer un rapport puis intégrer les templates
 
-# Fonctionnalités utilisées
+# 🛠️Fonctionnalités utilisées
 
-Rstudio, Rmarkdown, 
-
-
+ 'r Rmarkdown' 
 
 
 
@@ -56,7 +54,9 @@ Rstudio, Rmarkdown,
 
 
 
-# Références
+
+
+# 📚Références
 
 https://book.utilitr.org/03_Fiches_thematiques/Fiche_rmarkdown_param_report.html
 
