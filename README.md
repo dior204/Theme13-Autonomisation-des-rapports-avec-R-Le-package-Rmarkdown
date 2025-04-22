@@ -14,7 +14,7 @@ Il porte sur l’utilisation du package **RMarkdown** pour automatiser la géné
 - Améliorer la reproductibilité des travaux.
 
 ---
-# 🛠️ Technologies et packages utilisés
+## 🛠️ Technologies et packages utilisés
 
 
 - 🧮 **R** : Langage principal utilisé pour le traitement, l’analyse de données et la génération des rapports.
@@ -24,7 +24,7 @@ Il porte sur l’utilisation du package **RMarkdown** pour automatiser la géné
 - 🎨 **rvg** : Permet de générer des graphiques vectoriels (au format Office DrawingML) exportables dans Word et PowerPoint tout en conservant leur qualité d’édition.
 - 🔧 **tidyverse** : Ensemble de packages pour la manipulation, la transformation et la visualisation des données (incluant notamment `dplyr`, `readr`, etc.).
 ---
-# 📂 Contenu du dépôt
+## 📂 Contenu du dépôt
 
 Le dépôt est organisé autour de plusieurs exemples illustrant différentes possibilités offertes par RMarkdown pour l’automatisation des rapports :
 
@@ -65,7 +65,7 @@ Projet réalisé à des fins pédagogiques dans le cadre du cours *Projet statis
 
 ---
 
-# 📚 Références
+## 📚 Références
 
 https://book.utilitr.org/03_Fiches_thematiques/Fiche_rmarkdown_param_report.html
 
