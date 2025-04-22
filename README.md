@@ -1,10 +1,12 @@
 # 🧠Theme13- Autonomisation des rapports avec R le package Rmarkdown
 
+---
 ## 📝Description
 
 Ce projet a été réalisé dans le cadre de l’unité d’enseignement *Projet statistique avec R*.  
 Il porte sur l’utilisation du package **RMarkdown** pour automatiser la génération de rapports reproductibles, dynamiques et personnalisés.
 
+---
 ## 🎯Objectifs principaux
 
 - Générer des rapports dynamiques en combinant code, texte et graphiques.
@@ -22,6 +24,7 @@ Montrer les différentes parties  dans Rmarkdown et les béats bas dans Rmarkdow
 
 Générer un rapport puis intégrer les templates
 
+---
 # 🛠️Technologies et packages utilisés
 
 
@@ -31,7 +34,7 @@ Générer un rapport puis intégrer les templates
 - 🧩**MSchart** : Utilisé pour intégrer des graphiques Microsoft Office (notamment dans des documents Word) et enrichir les rapports avec des visualisations adaptées à un format bureautique.
 - 🎨**rvg** : Permet de générer des graphiques vectoriels (au format Office DrawingML) exportables dans Word et PowerPoint tout en conservant leur qualité d’édition.
 - 🔧**tidyverse** : Ensemble de packages pour la manipulation, la transformation et la visualisation des données (incluant notamment `dplyr`, `readr`, etc.).
-
+---
 # 📂Contenu du dépôt
 
 Le dépôt est organisé autour de plusieurs exemples illustrant différentes possibilités offertes par RMarkdown pour l’automatisation des rapports :
